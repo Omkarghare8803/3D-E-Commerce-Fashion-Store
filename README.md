@@ -19,7 +19,7 @@ A visually rich **3D e-commerce fashion store** built using **HTML, CSS, and Jav
 ![Preview](Images/preview.png)
 
 ## 🌐 Live Demo
-https://omkarghare8803.github.io/REPO_NAME/
+https://omkarghare8803.github.io/3D-E-Commerce-Fashion-Store/
 
 ## 🙌 Author
 **Omkar R. Ghare**
