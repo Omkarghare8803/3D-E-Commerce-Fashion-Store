@@ -16,7 +16,7 @@ A visually rich **3D e-commerce fashion store** built using **HTML, CSS, and Jav
 - 3D / Canvas / Three.js (if used)
 
 ## 📸 Preview
-![Preview](assets/images/preview.png)
+![Preview](Images/preview.png)
 
 ## 🌐 Live Demo
 https://omkarghare8803.github.io/REPO_NAME/
