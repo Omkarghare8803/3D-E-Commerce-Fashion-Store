@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE | Premium Fashion E-Commerce</title>
+    <meta name="description" content="Experience the future of fashion with LUXE. Premium 3D product viewing and luxury style.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lottie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">LUXE</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#collections">Collections</a>
+                <a href="#featured">Featured</a>
+                <a href="#new-arrivals">New Arrivals</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#why-choose-us">Why Choose Us</a>
+                <a href="#about">About</a>
+            </div>
+            <div class="nav-icons">
+                <div class="icon-wrap search-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="icon-wrap cart-trigger">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="badge">0</span>
+                </div>
+                <div class="icon-wrap hamburger-menu" id="hamburgerMenu">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with 3D Viewer -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content" data-speed="0.5">
+                <span class="hero-subtitle">Spring / Summer 2025</span>
+                <h1 class="hero-title">The Future <br>of <span class="italic">Luxury</span></h1>
+                <p class="hero-desc">Experience our latest collection in stunning 3D. Rotate, zoom, and explore every detail of premium craftsmanship.</p>
+                <div class="hero-btns">
+                    <a href="#shop" class="btn btn-primary">Shop Collection</a>
+                    <a href="#explore" class="btn btn-outline">Explore 3D <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div id="canvas-container"></div>
+                <div class="interaction-hint">
+                    <div id="lottie-drag"></div>
+                    <span>Drag to Rotate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section id="collections" class="section categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Curated Collections</h2>
+                <a href="#" class="view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="category-grid">
+                <div class="cat-card large">
+                    <img src="Images/Women-Fashion.jpg" alt="Women's Fashion">
+                    <div class="cat-content">
+                        <h3>Women's</h3>
+                        <a href="#" class="link-btn">Discover</a>
+                    </div>
+                </div>
+                <div class="cat-card">
+                    <img src="Images/Accessories.jpg" alt="Accessories">
+                    <div class="cat-content">
+                        <h3>Accessories</h3>
+                        <a href="#" class="link-btn">Shop Now</a>
+                    </div>
+                </div>
+                <div class="cat-card">
+                    <img src="Images/Men-Fashion.jpg" alt="Men's Fashion">
+                    <div class="cat-content">
+                        <h3>Men's</h3>
+                        <a href="#" class="link-btn">Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Slider -->
+    <section id="featured" class="section featured">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Exclusive Drops</span>
+                <h2 class="section-title">Featured Products</h2>
+            </div>
+            <div class="product-slider-wrapper">
+                <button class="slider-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="product-slider">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="prod-img">
+                            <img src="Images/Product-1.jpg" alt="Product 1">
+                            <div class="prod-actions">
+                                <button class="action-btn add-to-cart-btn" title="Add to Cart" data-product-id="1" data-product-name="Velvet Evening Gown" data-product-price="890"><i class="fa-solid fa-bag-shopping"></i></button>
+                                <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                            <span class="tag new">New</span>
+                        </div>
+                        <div class="prod-info">
+                            <h4>Velvet Evening Gown</h4>
+                            <span class="price">$890.00</span>
+                        </div>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="prod-img">
+                            <img src="Images/Product-2.jpg" alt="Product 2">
+                            <div class="prod-actions">
+                                <button class="action-btn add-to-cart-btn" title="Add to Cart" data-product-id="2" data-product-name="Silk Scarf" data-product-price="120"><i class="fa-solid fa-bag-shopping"></i></button>
+                                <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="prod-info">
+                            <h4>Silk Scarf</h4>
+                            <span class="price">$120.00</span>
+                        </div>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="prod-img">
+                            <img src="Images/Product-3.jpg" alt="Product 3">
+                            <div class="prod-actions">
+                                <button class="action-btn add-to-cart-btn" title="Add to Cart" data-product-id="3" data-product-name="Minimalist Tee" data-product-price="85"><i class="fa-solid fa-bag-shopping"></i></button>
+                                <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="prod-info">
+                            <h4>Minimalist Tee</h4>
+                            <span class="price">$85.00</span>
+                        </div>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="prod-img">
+                            <img src="Images/Product-4.jpg" alt="Product 4">
+                            <div class="prod-actions">
+                                <button class="action-btn add-to-cart-btn" title="Add to Cart" data-product-id="4" data-product-name="Urban Sneakers" data-product-price="200"><i class="fa-solid fa-bag-shopping"></i></button>
+                                <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                            </div>
+                            <span class="tag sale">-20%</span>
+                        </div>
+                        <div class="prod-info">
+                            <h4>Urban Sneakers</h4>
+                            <span class="price"><span class="old-price">$250.00</span> $200.00</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee / Trending -->
+    <section id="trending" class="marquee-section">
+        <div class="marquee-content">
+            <span>Sustainable Materials</span> • 
+            <span>Handcrafted in Italy</span> • 
+            <span>Premium Leather</span> • 
+            <span>Exclusive Design</span> • 
+            <span>Sustainable Materials</span> • 
+            <span>Handcrafted in Italy</span> • 
+            <span>Premium Leather</span> • 
+            <span>Exclusive Design</span> • 
+        </div>
+    </section>
+
+    <!-- New Arrivals Section with Rich Content -->
+    <section id="new-arrivals" class="section new-arrivals">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">New Arrivals</h2>
+                <a href="#" class="view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="arrivals-grid">
+                <!-- New Arrival Item 1 -->
+                <div class="arrival-card">
+                    <div class="arrival-image">
+                        <img src="Images/Premium-Jacket.jpg" alt="Premium Jacket">
+                        <span class="badge-hot">Hot</span>
+                        <div class="arrival-overlay">
+                            <button class="btn btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="arrival-content">
+                        <h4>Premium Leather Jacket</h4>
+                        <p class="description">Handcrafted Italian leather with modern silhouette</p>
+                        <div class="arrival-footer">
+                            <span class="price">$1,250.00</span>
+                            <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Arrival Item 2 -->
+                <div class="arrival-card">
+                    <div class="arrival-image">
+                        <img src="Images/Silk-Dress.jpg" alt="Silk Dress">
+                        <span class="badge-new">New</span>
+                        <div class="arrival-overlay">
+                            <button class="btn btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="arrival-content">
+                        <h4>Flowing Silk Dress</h4>
+                        <p class="description">Luxurious silk with sustainable craftsmanship</p>
+                        <div class="arrival-footer">
+                            <span class="price">$890.00</span>
+                            <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Arrival Item 3 -->
+                <div class="arrival-card">
+                    <div class="arrival-image">
+                        <img src="Images/Gold-Luxury-Watch.jpg" alt="Gold Watch">
+                        <span class="badge-exclusive">Exclusive</span>
+                        <div class="arrival-overlay">
+                            <button class="btn btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="arrival-content">
+                        <h4>Gold Luxury Timepiece</h4>
+                        <p class="description">Swiss-made precision with elegant design</p>
+                        <div class="arrival-footer">
+                            <span class="price">$2,450.00</span>
+                            <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Arrival Item 4 -->
+                <div class="arrival-card">
+                    <div class="arrival-image">
+                        <img src="Images/Designer-Luxury-Sneakers.jpg" alt="Designer Sneakers">
+                        <span class="badge-new">New</span>
+                        <div class="arrival-overlay">
+                            <button class="btn btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="arrival-content">
+                        <h4>Designer Luxury Sneakers</h4>
+                        <p class="description">Limited edition collaboration with top designers</p>
+                        <div class="arrival-footer">
+                            <span class="price">$680.00</span>
+                            <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Arrival Item 5 -->
+                <div class="arrival-card">
+                    <div class="arrival-image">
+                        <img src="Images/Designer-Sunglasses.jpg" alt="Designer Sunglasses">
+                        <span class="badge-hot">Hot</span>
+                        <div class="arrival-overlay">
+                            <button class="btn btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="arrival-content">
+                        <h4>Designer Sunglasses</h4>
+                        <p class="description">UV protection with iconic Italian design</p>
+                        <div class="arrival-footer">
+                            <span class="price">$420.00</span>
+                            <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Arrival Item 6 -->
+                <div class="arrival-card">
+                    <div class="arrival-image">
+                        <img src="Images/Premium-Leather-Handbag.jpg" alt="Premium Handbag">
+                        <span class="badge-exclusive">Exclusive</span>
+                        <div class="arrival-overlay">
+                            <button class="btn btn-primary">Quick View</button>
+                        </div>
+                    </div>
+                    <div class="arrival-content">
+                        <h4>Premium Leather Handbag</h4>
+                        <p class="description">Timeless luxury with premium leather finish</p>
+                        <div class="arrival-footer">
+                            <span class="price">$1,890.00</span>
+                            <button class="action-btn favorite-btn" title="Add to Wishlist"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Client Reviews</span>
+                <h2 class="section-title">What Our Customers Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"LUXE completely transformed my shopping experience. The 3D viewer is revolutionary and the quality is unmatched. Highly recommended!"</p>
+                    <div class="testimonial-info">
+                        <img src="Images/Testimonial-1.jpg" alt="Sarah Jenkins">
+                        <div>
+                            <h5>Sarah Jenkins</h5>
+                            <span>Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"Exceptional quality and outstanding customer service. The delivery was faster than expected and the packaging was beautiful. 5 stars!"</p>
+                    <div class="testimonial-info">
+                        <img src="Images/Testimonial-2.jpg" alt="Michael Chen">
+                        <div>
+                            <h5>Michael Chen</h5>
+                            <span>Fashion Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"Premium collection with impeccable craftsmanship. The 3D viewer really helped me make confident purchases. Worth every penny!"</p>
+                    <div class="testimonial-info">
+                        <img src="Images/Testimonial-3.jpg" alt="Emily Rodriguez">
+                        <div>
+                            <h5>Emily Rodriguez</h5>
+                            <span>Style Influencer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"I've purchased from LUXE multiple times and I'm always impressed. Every piece is a masterpiece. Best luxury brand online!"</p>
+                    <div class="testimonial-info">
+                        <img src="Images/Testimonial-4.jpg" alt="James Mitchell">
+                        <div>
+                            <h5>James Mitchell</h5>
+                            <span>Luxury Collector</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="section why-choose-us">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Why Choose LUXE</h2>
+                <p class="subtitle-text">Experience premium fashion redefined through innovation and craftsmanship</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <h4>3D Product Viewer</h4>
+                    <p>Immersive 3D viewing technology for complete product exploration and confidence in your purchase.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-truck"></i>
+                    </div>
+                    <h4>Fast Shipping</h4>
+                    <p>Express delivery worldwide. Your items arrive beautifully packaged and on time, every time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield"></i>
+                    </div>
+                    <h4>Secure Shopping</h4>
+                    <p>Bank-level security protects your data. Shop with confidence on our encrypted platform.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h4>Premium Quality</h4>
+                    <p>Handpicked collections from world-renowned designers and sustainable brands.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-redo"></i>
+                    </div>
+                    <h4>Easy Returns</h4>
+                    <p>30-day return policy. No questions asked. We want you to be completely satisfied.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p>Our dedicated team is always available to help with any questions or concerns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limited Time Offers Section -->
+    <section class="section limited-offers">
+        <div class="container">
+            <div class="offers-header">
+                <div class="offers-content">
+                    <span class="section-subtitle">Seasonal Collection</span>
+                    <h2 class="section-title">Exclusive Limited Time Offers</h2>
+                    <p>Grab these exclusive pieces before they're gone. Limited stock on hand-picked luxury items.</p>
+                    <a href="#" class="btn btn-primary">Shop Now</a>
+                </div>
+                <div class="countdown-timer">
+                    <div class="timer-item">
+                        <span id="days" class="timer-number">12</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="timer-item">
+                        <span id="hours" class="timer-number">18</span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="timer-item">
+                        <span id="minutes" class="timer-number">45</span>
+                        <p>Minutes</p>
+                    </div>
+                    <div class="timer-item">
+                        <span id="seconds" class="timer-number">32</span>
+                        <p>Seconds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <span class="section-subtitle">Our Story</span>
+                    <h2 class="section-title">About LUXE</h2>
+                    <p class="about-text">Founded in 2020, LUXE revolutionized the luxury fashion e-commerce landscape by introducing immersive 3D product viewing technology. Our mission is to bring the premium shopping experience directly to your screen, breaking down barriers between digital and physical retail.</p>
+                    <p class="about-text">We believe that luxury fashion should be accessible, transparent, and sustainable. Every piece in our collection is handpicked from renowned designers and ethical manufacturers worldwide, ensuring that quality and craftsmanship are never compromised.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <h4>50K+</h4>
+                            <p>Happy Customers</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>200+</h4>
+                            <p>Designer Brands</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>99.8%</h4>
+                            <p>Satisfaction Rate</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>50+</h4>
+                            <p>Countries Served</p>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+
+                <div class="about-image">
+                    <img src="Images/About-Image.jpg" alt="LUXE Store">
+                    <div class="image-overlay">
+                        <div class="overlay-content">
+                            <i class="fa-solid fa-play"></i>
+                            <p>Watch Our Story</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-values">
+                <h3 class="values-title">Our Core Values</h3>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <h4>Premium Quality</h4>
+                        <p>We source only the finest materials and work with the best craftspeople in the world.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h4>Sustainability</h4>
+                        <p>Eco-friendly practices and ethical manufacturing are at the heart of everything we do.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h4>Customer First</h4>
+                        <p>Your satisfaction and experience are our top priority, always.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h4>Innovation</h4>
+                        <p>We continuously innovate to bring you the latest in fashion technology.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="section newsletter">
+        <div class="container">
+            <div class="newsletter-box">
+                <h2>Join the Inner Circle</h2>
+                <p>Subscribe to receive early access to new drops and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">LUXE</a>
+                    <p>Redefining luxury fashion for the digital age.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <a href="#">New Arrivals</a>
+                    <a href="#">Best Sellers</a>
+                    <a href="#">Accessories</a>
+                    <a href="#">Sale</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#">FAQ</a>
+                    <a href="#">Shipping & Returns</a>
+                    <a href="#">Size Guide</a>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">Our Story</a>
+                    <a href="#">Sustainability</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 LUXE Fashion. With 💕 By OG: Omkar Ghare All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
