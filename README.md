@@ -22,4 +22,4 @@ A visually rich **3D e-commerce fashion store** built using **HTML, CSS, and Jav
 https://omkarghare8803.github.io/REPO_NAME/
 
 ## 🙌 Author
-**Omkar Ghare**
+**Omkar R. Ghare**
